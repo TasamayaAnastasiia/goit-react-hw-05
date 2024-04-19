@@ -24,6 +24,7 @@ const MoviesPage = () => {
 
         if (!value) {
             toast.error('Your field is empty');
+            return;
         } 
 
         setInputValue(value);
