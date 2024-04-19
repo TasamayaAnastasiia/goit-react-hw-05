@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { toast } from 'react-hot-toast';
 import { DataSearch } from "../../movies-api";
-import { useLocation, NavLink } from 'react-router-dom';
+import { useLocation, NavLink, useNavigate } from 'react-router-dom';
 import css from '../MoviesPage/MoviesPage.module.css';
 import clsx from 'clsx';
 
@@ -9,6 +9,7 @@ const MoviesPage = () => {
     const [inputValue, setInputValue] = useState('');
     const [listResult, setListResult] = useState([]);
     const location = useLocation();
+    const navigate = useNavigate();
     const searchParams = new URLSearchParams(location.search);
     const query = searchParams.get('query');
 
@@ -22,13 +23,14 @@ const MoviesPage = () => {
         const value = e.target.elements.query.value;
 
         if (!value) {
-            toast.error(`Please enter a search value`, { position: "bottom-center" });
+            toast.error('Your field is empty');
         } 
 
         setInputValue(value);
-
-        e.target.reset();
+        navigate(`/movies?query=${value}`);
         setInputValue('');
+        e.target.reset();
+
     }
 
     const handleInputChange = (e) => {
@@ -53,7 +55,7 @@ const MoviesPage = () => {
         <div>
             <form className={css.form} onSubmit={handleSubmit}>
                 <input className={css.input} type='text' name='query' placeholder="Searhing name..." onChange={handleInputChange} value={inputValue}></input>
-                <NavLink className={css.link} to={`/movies?query=${inputValue}`}><button type='submit'>Search</button></NavLink>
+                <button type='submit'>Search</button>
             </form>
             {listResult !== 0 && query !== null && (
                 <ul className={css.listSearching}>
