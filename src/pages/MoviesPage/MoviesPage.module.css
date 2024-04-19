@@ -1,0 +1,41 @@
+.input {
+    margin-top: 10px;
+    height: 30px;
+    border-radius: 5px;
+    border-color: black;
+    padding-left: 10px;
+    font-family: 'Sedan';
+}
+.form {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: end;
+    margin-left: 15px;
+}
+input:focus-visible {
+    border: 2px solid #1f7319;
+    outline: none;
+}
+.listSearching {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 50px;
+    padding: 0;
+}
+.paragraf {
+    margin: 0;
+    width: 200px;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+.link {
+    text-decoration: none;
+    color: inherit;
+}
+.active {
+    color: #1f7319;
+}

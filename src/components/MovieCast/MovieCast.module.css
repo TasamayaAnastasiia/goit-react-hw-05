@@ -1,0 +1,7 @@
+.listCast {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 30px;
+}

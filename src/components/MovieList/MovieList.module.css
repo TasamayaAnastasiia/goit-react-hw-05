@@ -1,0 +1,22 @@
+.listMovies {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 0;
+    margin-left: 40px;
+}
+.paragraf {
+    margin: 0;
+    width: 200px;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+.link {
+    text-decoration: none;
+    color: inherit;
+}
+.active {
+    color: red;
+}
