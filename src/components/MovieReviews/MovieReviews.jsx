@@ -5,19 +5,19 @@ import { useParams } from "react-router-dom";
 
 const MovieReviews = () => {
 const [reviews, setReviews] = useState([]);
-const {movieid} = useParams();
+const {movieId} = useParams();
 
  useEffect(() => {
     const fetchReviews = async () => {
         try {
-            const rev = await DataReviews(movieid);
+            const rev = await DataReviews(movieId);
             setReviews(rev);
         } catch {
             alert('error downloading reviews in this movie');
         }
     }
     fetchReviews();
- },[movieid]);
+ },[movieId]);
 
     return (
         <ul>

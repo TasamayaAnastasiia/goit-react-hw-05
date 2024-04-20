@@ -7,7 +7,7 @@ import clsx from 'clsx';
 
 const MovieDetailsPage = () => {
 
-const {movieid} = useParams();
+const {movieId} = useParams();
 const [movie, setMovie] = useState(null);
 const location = useLocation();
 const backLinkHref = useRef(location.state ?? '/movies');
@@ -19,7 +19,7 @@ const classForLinks = ({ isActive }) => {
     useEffect(() => {
         const fetchMovie = async () => {
             try {
-                const movieData = await getData(movieid);
+                const movieData = await getData(movieId);
                     setMovie(movieData);
             } catch (error) {
                 console.error('Error fetching movie data:', error);
@@ -27,7 +27,7 @@ const classForLinks = ({ isActive }) => {
         };
 
         fetchMovie();
-    }, [movieid]);
+    }, [movieId]);
 
     return (
         movie !== null && (

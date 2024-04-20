@@ -6,19 +6,19 @@ import css from '../MovieCast/MovieCast.module.css';
 
 const MovieCast = () => {
 const [casts, setCasts] = useState([]);
-const {movieid} = useParams();
+const {movieId} = useParams();
 
  useEffect(() => {
     const fetchCasts = async () => {
         try {
-            const castesMovie = await DataCast(movieid);
+            const castesMovie = await DataCast(movieId);
             setCasts(castesMovie);
         } catch {
             alert('error downloading actors in this movie');
         }
     }
     fetchCasts();
- },[movieid]);
+ },[movieId]);
 
     return (
         <ul className={css.listCast}>

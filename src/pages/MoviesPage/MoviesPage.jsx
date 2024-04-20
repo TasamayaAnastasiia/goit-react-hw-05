@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { toast } from 'react-hot-toast';
 import { DataSearch } from "../../movies-api";
-import { useLocation, NavLink, useNavigate } from 'react-router-dom';
+import { useLocation, NavLink, useNavigate, useSearchParams } from 'react-router-dom';
 import css from '../MoviesPage/MoviesPage.module.css';
 import clsx from 'clsx';
 
@@ -9,8 +9,7 @@ const MoviesPage = () => {
     const [inputValue, setInputValue] = useState('');
     const [listResult, setListResult] = useState([]);
     const location = useLocation();
-    const navigate = useNavigate();
-    const searchParams = new URLSearchParams(location.search);
+    const [searchParams, setSearchParams] = useSearchParams();
     const query = searchParams.get('query');
 
     const classForLinks = ({ isActive }) => {
@@ -27,18 +26,15 @@ const MoviesPage = () => {
             return;
         } 
 
+        setSearchParams({ query: value });                         //нове значення query
         setInputValue(value);
-        navigate(`/movies?query=${value}`);
-        setInputValue('');
-        e.target.reset();
-
     }
 
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
     }
 
-    useEffect(() => {
+    useEffect(() => {                                               
         const fetchSearch = async () => {
             try {
                 const resultSearching = await DataSearch(query);
