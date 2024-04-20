@@ -3,6 +3,7 @@ import { toast } from 'react-hot-toast';
 import { DataSearch } from "../../movies-api";
 import { useLocation, NavLink, useNavigate, useSearchParams } from 'react-router-dom';
 import css from '../MoviesPage/MoviesPage.module.css';
+import MovieList from "../../components/MovieList/MovieList";
 import clsx from 'clsx';
 
 const MoviesPage = () => {
@@ -46,26 +47,13 @@ const MoviesPage = () => {
         fetchSearch();
      }, [query]);
 
-     
-
     return (
         <div>
             <form className={css.form} onSubmit={handleSubmit}>
                 <input className={css.input} type='text' name='query' placeholder="Searhing name..." onChange={handleInputChange} value={inputValue}></input>
                 <button type='submit'>Search</button>
             </form>
-            {listResult !== 0 && query !== null && (
-                <ul className={css.listSearching}>
-                    {listResult.map(movie => 
-                        <NavLink className={classForLinks} key={movie.id} to={`${movie.id}`} state={location}>
-                            <li>
-                                <img src={'https://image.tmdb.org/t/p/w500'+`${movie.backdrop_path}`}/>
-                                <p className={css.paragraf}><b>{movie.title}</b></p>
-                            </li>
-                        </NavLink>)
-                    }
-                </ul>
-            )}
+            {listResult.length > 0 && query !== null && (<MovieList movies={listResult}/>)}
         </div>
     );
 }
