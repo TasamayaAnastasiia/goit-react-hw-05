@@ -33,15 +33,22 @@ const MoviesPage = () => {
         const fetchSearch = async () => {
             try {
                 const resultSearching = await DataSearch(query);
-                setListResult(resultSearching);
-            } catch {
-                toast.error('We are don`t have this movie');
+                if (resultSearching.length === 0) {
+                    toast.error('We don`t have this movie');
+                } else {
+                    setListResult(resultSearching);
+                }
+            } catch (error) {
+                console.error('Error occurred while searching:', error);
+                toast.error('An error occurred while searching');
             }
-        }
-        if(query) {
+        };
+    
+        if (query) {
             fetchSearch();
         }
-     }, [query]);
+    }, [query]);
+    
 
     return (
         <div>
