@@ -1,21 +1,15 @@
 import { useState, useEffect } from "react";
 import { toast } from 'react-hot-toast';
 import { DataSearch } from "../../movies-api";
-import { useLocation, NavLink, useNavigate, useSearchParams } from 'react-router-dom';
+import {useSearchParams } from 'react-router-dom';
 import css from '../MoviesPage/MoviesPage.module.css';
 import MovieList from "../../components/MovieList/MovieList";
-import clsx from 'clsx';
 
 const MoviesPage = () => {
     const [inputValue, setInputValue] = useState('');
     const [listResult, setListResult] = useState([]);
-    const location = useLocation();
     const [searchParams, setSearchParams] = useSearchParams();
     const query = searchParams.get('query');
-
-    const classForLinks = ({ isActive }) => {
-        return clsx(css.link, isActive && css.active);
-      };
 
     const handleSubmit = (e) => {
 
@@ -44,7 +38,9 @@ const MoviesPage = () => {
                 toast.error('We are don`t have this movie');
             }
         }
-        fetchSearch();
+        if(query) {
+            fetchSearch();
+        }
      }, [query]);
 
     return (
